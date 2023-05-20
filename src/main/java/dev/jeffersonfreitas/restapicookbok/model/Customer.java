@@ -2,11 +2,13 @@ package dev.jeffersonfreitas.restapicookbok.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@AllArgsConstructor
 public class Customer {
     @Id
     private String uuid;
@@ -21,6 +23,13 @@ public class Customer {
         this.name = name;
         this.code = code;
         this.birthDate = birthDate;
+        return this;
+    }
+
+    public Customer filter(final String uuid, final String name, final String code) {
+        this.uuid = uuid;
+        this.name = name;
+        this.code = code;
         return this;
     }
 

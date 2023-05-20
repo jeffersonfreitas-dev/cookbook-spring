@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 public class PageSettings {
 
     private int page = 0;
-    private int elementPerPage = 2;
+    private int size = 2;
     private String direction = "dsc";
     private String field;
 
