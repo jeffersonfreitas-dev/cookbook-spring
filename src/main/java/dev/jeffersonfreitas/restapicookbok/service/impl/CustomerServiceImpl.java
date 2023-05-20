@@ -12,7 +12,6 @@ import org.springframework.data.domain.*;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
         PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), sort);
 
         List<CustomerResponse> result = repository.findAll(example, pageRequest)
-                .stream().map(c -> CustomerMapper.toResponse(c)).collect(Collectors.toList());
+                .stream().map(CustomerMapper::toResponse).collect(Collectors.toList());
         return new PageImpl<>(result, pageRequest, result.size());
     }
 

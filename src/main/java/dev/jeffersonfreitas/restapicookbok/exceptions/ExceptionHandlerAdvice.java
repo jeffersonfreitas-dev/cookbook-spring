@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
@@ -20,5 +21,13 @@ public class ExceptionHandlerAdvice {
                 .map(x -> x.getDefaultMessage()).collect(Collectors.toList());
         final ErrorDTO entity = new ErrorDTO(code, message, errors);
         return ResponseEntity.badRequest().body(entity);
+    }
+
+    @ExceptionHandler(TooManyRequestException.class)
+    @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
+    public ErrorDTO handleTooManyRequestException(TooManyRequestException ex) {
+        final int code = HttpStatus.TOO_MANY_REQUESTS.value();
+        final String message = ex.getMessage();
+        return new ErrorDTO(code, message);
     }
 }

@@ -1,5 +1,6 @@
 package dev.jeffersonfreitas.restapicookbok.dto;
 
+import dev.jeffersonfreitas.restapicookbok.exceptions.TooManyRequestException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 public class PageableRequestDTO {
 
     private static final Integer DEFAULT_SIZE = 10;
+    private static final Integer MAX_PAGE_SIZE = 1000;
 
     private Integer page;
     private Integer size;
@@ -36,6 +38,8 @@ public class PageableRequestDTO {
     }
 
     private Integer setSize(final Integer size) {
+        if(size != null && size > MAX_PAGE_SIZE)
+            throw new TooManyRequestException("A quantidade máxima para exibir por página é " + MAX_PAGE_SIZE);
         return size == null ? DEFAULT_SIZE : size;
     }
 
