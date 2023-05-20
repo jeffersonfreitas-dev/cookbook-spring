@@ -1,8 +1,14 @@
 server:
   port: 9000
+  servlet:
+    context-path: /api
 
 spring:
   datasource:
     url: jdbc:h2:mem:mydb
     username: jeff
     password: jeff
+
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui.html
