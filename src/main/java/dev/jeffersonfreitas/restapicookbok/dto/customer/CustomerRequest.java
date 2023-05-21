@@ -1,7 +1,7 @@
 package dev.jeffersonfreitas.restapicookbok.dto.customer;
 
-import dev.jeffersonfreitas.restapicookbok.validations.BirthDateBeforeNow;
-import dev.jeffersonfreitas.restapicookbok.validations.UniqueName;
+import dev.jeffersonfreitas.restapicookbok.utils.validations.birthdate.BirthDateBeforeNow;
+import dev.jeffersonfreitas.restapicookbok.utils.validations.unique_name.customer.UniqueCustomerName;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 public class CustomerRequest {
 
     @NotBlank(message = "{customer.name.required}")
-    @UniqueName(message = "{customer.name.invalid}")
+    @UniqueCustomerName(message = "{customer.name.invalid}")
     private String name;
 
     @Pattern(regexp = "^[A-Z]{4}[0-9]{2}", message = "{customer.code.required}")

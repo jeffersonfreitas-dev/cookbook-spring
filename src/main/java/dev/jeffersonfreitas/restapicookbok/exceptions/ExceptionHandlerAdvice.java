@@ -30,4 +30,12 @@ public class ExceptionHandlerAdvice {
         final String message = ex.getMessage();
         return new ErrorDTO(code, message);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDTO handleResourceNotFoundException(ResourceNotFoundException ex) {
+        final int code = HttpStatus.NOT_FOUND.value();
+        final String message = ex.getMessage();
+        return new ErrorDTO(code, message);
+    }
 }

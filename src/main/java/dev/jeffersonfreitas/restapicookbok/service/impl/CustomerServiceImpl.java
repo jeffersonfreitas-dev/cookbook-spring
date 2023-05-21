@@ -7,6 +7,7 @@ import dev.jeffersonfreitas.restapicookbok.mapper.CustomerMapper;
 import dev.jeffersonfreitas.restapicookbok.model.Customer;
 import dev.jeffersonfreitas.restapicookbok.repository.CustomerRepository;
 import dev.jeffersonfreitas.restapicookbok.service.CustomerService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.lang.NonNull;
@@ -38,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         Example<Customer> example = Example.of(customer, customExample);
 
-        if(!request.getSortField().isBlank()){
+        if(request.getSortField().isBlank()){
             request.setSortField(DEFAULT_SORT_FIELD);
         }
 
@@ -51,6 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public CustomerResponse create(@NonNull CustomerRequest request) {
         Customer entity = CustomerMapper.toEntity(request);
         entity = repository.save(entity);

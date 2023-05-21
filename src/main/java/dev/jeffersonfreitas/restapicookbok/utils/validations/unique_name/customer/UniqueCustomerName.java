@@ -1,4 +1,5 @@
-package dev.jeffersonfreitas.restapicookbok.validations;
+package dev.jeffersonfreitas.restapicookbok.utils.validations.unique_name.customer;
+
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -8,11 +9,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.FIELD})
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = BirthDateBeforeNowValidator.class)
-public @interface BirthDateBeforeNow {
-    String message() default "Birth date not should be before now";
+@Constraint(validatedBy = UniqueCustomerNameValidator.class)
+public @interface UniqueCustomerName {
+    String message() default "Name must be unique";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

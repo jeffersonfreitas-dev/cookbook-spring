@@ -2,22 +2,24 @@ package dev.jeffersonfreitas.restapicookbok.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.UUID;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     private String uuid;
-    private String name;
+    private String username;
     private String password;
 
     public User () {}
 
-    public User create(final String name, final String password) {
+    public User create(final String username, final String password) {
         this.uuid = UUID.randomUUID().toString();
-        this.name = name;
+        this.username = username;
         this.password = password;
         return this;
     }
@@ -26,8 +28,8 @@ public class User {
         return uuid;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {

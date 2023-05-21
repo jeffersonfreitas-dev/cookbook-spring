@@ -1,5 +1,4 @@
-package dev.jeffersonfreitas.restapicookbok.validations;
-
+package dev.jeffersonfreitas.restapicookbok.utils.validations.password;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -11,9 +10,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueNameValidator.class)
-public @interface UniqueName {
-    String message() default "Name must be unique";
+@Constraint(validatedBy = StrongPasswordValidator.class)
+public @interface StrongPassword {
+    String message() default "Password must contain digits, lower, upper and special with min 8 and max 20 characters";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

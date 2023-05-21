@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +54,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "429", description = "Error when size is greather max size",
                     content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
     })
-//    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<CustomerResponse> fetchAll(@RequestParam(required = false) Integer page,
                                    @RequestParam(required = false) Integer size,
@@ -72,7 +73,7 @@ public class CustomerController {
                     content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
     })
     @ResponseStatus(HttpStatus.CREATED)
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public CustomerResponse create(@RequestBody @Valid CustomerRequest request) {
         return service.create(request);

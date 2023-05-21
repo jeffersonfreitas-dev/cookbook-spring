@@ -1,33 +1,33 @@
 package dev.jeffersonfreitas.restapicookbok.dto.user;
 
-import dev.jeffersonfreitas.restapicookbok.validations.StrongPassword;
-import dev.jeffersonfreitas.restapicookbok.validations.UniqueName;
+import dev.jeffersonfreitas.restapicookbok.utils.validations.password.StrongPassword;
+import dev.jeffersonfreitas.restapicookbok.utils.validations.unique_name.user.UniqueUserName;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class UserRequest {
 
-    @NotBlank(message = "{user.name.required}")
-    @UniqueName(message = "{user.name.invalid}")
-    private String name;
+    @NotBlank(message = "{user.username.required}")
+    @UniqueUserName(message = "{user.username.invalid}")
+    private String username;
 
     @NotBlank(message = "{user.password.required}")
-    @StrongPassword(message = "Password must be strong")
+    @StrongPassword(message = "{user.password.invalid}")
     private String password;
 
     public UserRequest() {}
 
-    public void setName(String name) {
-        this.name = name.trim();
+    public void setUsername(String username) {
+        this.username = username.trim();
     }
 
     public void setPassword(String password) {
         this.password = password.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
