@@ -1,7 +1,7 @@
 package dev.jeffersonfreitas.restapicookbok.mapper;
 
-import dev.jeffersonfreitas.restapicookbok.dto.CustomerRequest;
-import dev.jeffersonfreitas.restapicookbok.dto.CustomerResponse;
+import dev.jeffersonfreitas.restapicookbok.dto.customer.CustomerRequest;
+import dev.jeffersonfreitas.restapicookbok.dto.customer.CustomerResponse;
 import dev.jeffersonfreitas.restapicookbok.model.Customer;
 
 

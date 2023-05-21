@@ -1,8 +1,8 @@
 package dev.jeffersonfreitas.restapicookbok.controller;
 
 
-import dev.jeffersonfreitas.restapicookbok.dto.CustomerRequest;
-import dev.jeffersonfreitas.restapicookbok.dto.CustomerResponse;
+import dev.jeffersonfreitas.restapicookbok.dto.customer.CustomerRequest;
+import dev.jeffersonfreitas.restapicookbok.dto.customer.CustomerResponse;
 import dev.jeffersonfreitas.restapicookbok.dto.PageableRequestDTO;
 import dev.jeffersonfreitas.restapicookbok.exceptions.ErrorDTO;
 import dev.jeffersonfreitas.restapicookbok.service.CustomerService;
@@ -53,6 +53,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "429", description = "Error when size is greather max size",
                     content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
     })
+//    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<CustomerResponse> fetchAll(@RequestParam(required = false) Integer page,
                                    @RequestParam(required = false) Integer size,
@@ -70,8 +71,9 @@ public class CustomerController {
             @ApiResponse(responseCode = "400", description = "Invalid values in request body",
                     content = @Content(schema = @Schema(implementation = ErrorDTO.class)))
     })
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public CustomerResponse create(@RequestBody @Valid CustomerRequest request) {
         return service.create(request);
     }

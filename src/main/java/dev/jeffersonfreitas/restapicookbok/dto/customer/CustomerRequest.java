@@ -1,12 +1,14 @@
-package dev.jeffersonfreitas.restapicookbok.dto;
+package dev.jeffersonfreitas.restapicookbok.dto.customer;
 
 import dev.jeffersonfreitas.restapicookbok.validations.BirthDateBeforeNow;
 import dev.jeffersonfreitas.restapicookbok.validations.UniqueName;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.EqualsAndHashCode;
 ;import java.time.LocalDate;
 
+@EqualsAndHashCode
 public class CustomerRequest {
 
     @NotBlank(message = "{customer.name.required}")

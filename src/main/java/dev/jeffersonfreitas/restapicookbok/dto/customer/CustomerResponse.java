@@ -1,4 +1,4 @@
-package dev.jeffersonfreitas.restapicookbok.dto;
+package dev.jeffersonfreitas.restapicookbok.dto.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
